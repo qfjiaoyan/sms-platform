@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.smsplatform.webmaster.dao.TChannelMapper">
+    <resultMap id="BaseResultMap" type="com.qianfeng.smsplatform.webmaster.pojo.TChannel">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="channelName" jdbcType="VARCHAR" property="channelname"/>
+        <result column="channelType" jdbcType="TINYINT" property="channeltype"/>
+        <result column="spNumber" jdbcType="VARCHAR" property="spnumber"/>
+        <result column="protocalType" jdbcType="TINYINT" property="protocaltype"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, channelName, channelType, spNumber, protocalType
+    </sql>
+    <select id="selectByExample" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannelExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_channel
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_channel
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_channel
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannelExample">
+        delete from t_channel
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannel">
+        insert into t_channel (id, channelName, channelType,
+        spNumber, protocalType)
+        values (#{id,jdbcType=BIGINT}, #{channelname,jdbcType=VARCHAR}, #{channeltype,jdbcType=TINYINT},
+        #{spnumber,jdbcType=VARCHAR}, #{protocaltype,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannel">
+        insert into t_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="channelname != null">
+                channelName,
+            </if>
+            <if test="channeltype != null">
+                channelType,
+            </if>
+            <if test="spnumber != null">
+                spNumber,
+            </if>
+            <if test="protocaltype != null">
+                protocalType,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="channelname != null">
+                #{channelname,jdbcType=VARCHAR},
+            </if>
+            <if test="channeltype != null">
+                #{channeltype,jdbcType=TINYINT},
+            </if>
+            <if test="spnumber != null">
+                #{spnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="protocaltype != null">
+                #{protocaltype,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannelExample"
+            resultType="java.lang.Long">
+        select count(*) from t_channel
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_channel
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.channelname != null">
+                channelName = #{record.channelname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.channeltype != null">
+                channelType = #{record.channeltype,jdbcType=TINYINT},
+            </if>
+            <if test="record.spnumber != null">
+                spNumber = #{record.spnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.protocaltype != null">
+                protocalType = #{record.protocaltype,jdbcType=TINYINT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_channel
+        set id = #{record.id,jdbcType=BIGINT},
+        channelName = #{record.channelname,jdbcType=VARCHAR},
+        channelType = #{record.channeltype,jdbcType=TINYINT},
+        spNumber = #{record.spnumber,jdbcType=VARCHAR},
+        protocalType = #{record.protocaltype,jdbcType=TINYINT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannel">
+        update t_channel
+        <set>
+            <if test="channelname != null">
+                channelName = #{channelname,jdbcType=VARCHAR},
+            </if>
+            <if test="channeltype != null">
+                channelType = #{channeltype,jdbcType=TINYINT},
+            </if>
+            <if test="spnumber != null">
+                spNumber = #{spnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="protocaltype != null">
+                protocalType = #{protocaltype,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TChannel">
+        update t_channel
+        set channelName = #{channelname,jdbcType=VARCHAR},
+        channelType = #{channeltype,jdbcType=TINYINT},
+        spNumber = #{spnumber,jdbcType=VARCHAR},
+        protocalType = #{protocaltype,jdbcType=TINYINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="D:\Program Files\repository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar"/>
+    <context id="test" targetRuntime="MyBatis3">
+        <!-- 一些工具 -->
+        <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接 参数 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://101.201.236.229:3306/sms_plaform" userId="root"
+                        password="Root@123456">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+			NUMERIC 类型解析为java.math.BigDecimal -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.qianfeng.smsplatform.webmaster.pojo"
+                            targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.qianfeng.smsplatform.webmaster.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 要生成哪些表
+        <table tableName="t_acount_record" domainObjectName="TAcountRecord"></table>
+        <table tableName="t_admin_user" domainObjectName="TAdminUser"></table>
+        <table tableName="t_channel" domainObjectName="TChannel"></table>
+        <table tableName="t_client" domainObjectName="TClient"></table>
+        <table tableName="t_client_business" domainObjectName="TClientBusiness"></table>
+        <table tableName="t_client_channel" domainObjectName="TClientChannel"></table>
+        <table tableName="t_inst" domainObjectName="TInst"></table>
+        <table tableName="t_menu" domainObjectName="TMenu"></table>
+        <table tableName="t_phase" domainObjectName="TPhase"></table>
+        <table tableName="t_role" domainObjectName="TRole"></table>
+        <table tableName="t_role_menu" domainObjectName="TRoleMenu"></table>
+        <table tableName="t_user_role" domainObjectName="TUserRole"></table>
+        <table tableName="t_black_list" domainObjectName="TBlackList"></table>
+        <table tableName="t_dirtyword" domainObjectName="TDirtyword"></table>
+-->
+        <table tableName="t_acount_record" domainObjectName="TAcountRecord"></table>
+
+    </context>
+</generatorConfiguration>

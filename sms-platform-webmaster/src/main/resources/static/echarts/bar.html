@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../public/libs/jquery.min.js"></script>
+    <script src="../public/plugins/echarts/echarts.min.js"></script>
+    <script>
+        $(function () {
+            //1,初始化echarts
+            var myEcharts = echarts.init(document.getElementById("bar"));
+            //2,设置图形显示的数据选项
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [],
+                    type: 'bar'
+                }]
+            };
+
+            $.get("/sys/echarts/bar", function (r) {
+                //把真数据赋值给option
+                option.xAxis.data = r.xAxis;
+                option.series[0].data = r.seriesData;
+                //3,把option设置给echarts对象  显示柱状图
+                myEcharts.setOption(option);
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+
+<div id="bar" style="width: 600px;height: 600px;">
+
+</div>
+
+</body>
+</html>

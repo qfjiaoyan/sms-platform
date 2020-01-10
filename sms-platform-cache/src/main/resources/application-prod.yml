@@ -1,0 +1,28 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:8000/eureka/
+
+# Redis数据库索引（默认为0）
+spring:
+  redis:
+    database: 0
+    # Redis服务器地址
+    host: 114.242.146.109
+    #集群连接示例
+    #spring.redis.cluster.nodes=192.168.157.135:7000,192.168.157.135:7001,192.168.157.135:7002,192.168.157.135:7003,192.168.157.135:7004,192.168.157.135:7005
+    # Redis服务器连接端口
+    port: 9302
+    # Lettuce
+    # 连接池最大连接数（使用负值表示没有限制）
+    lettuce:
+      pool:
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 10000
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+      # 关闭超时时间
+      shutdown-timeout: 3000

@@ -1,0 +1,5 @@
+﻿spring:
+  profiles:
+    active: '@profileActive@'
+  application:
+    name: INTERFACE-SERVICE

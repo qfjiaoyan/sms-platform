@@ -1,0 +1,17 @@
+﻿eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:8000/eureka/
+spring:
+  profiles:
+    active: '@profileActive@'
+  application:
+    name: STRATEGY-SERVICE
+
+smsplatform:
+  #  filters: smsOpIDFilter,smsBlackFilter,smsKeyWordFilter,smsFeeFilter,smsRouterFilter
+  filters: smsOpIDFilter,smsBlackFilter,smsKeyWordFilter,smsFeeFilter,smsRouterFilter
+  sms_send_limit:
+    day: 10
+    hour: 5
+    five_minute: 3

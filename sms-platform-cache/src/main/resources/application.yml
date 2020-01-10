@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: '@profileActive@'
+  application:
+    name: CACHE-SERVICE
+server:
+  port: 8888
+
+#\u5728\u7EBFapi\u914D\u7F6E
+swagger:
+  basePackage: com.qianfeng.smsplatform.cache.web
+  title: \u7F13\u5B58\u5FAE\u670D\u52A1\u76F8\u5173\u63A5\u53E3\u6587\u6863
+  description: \u63D0\u4F9B\u7F13\u5B58\u76F8\u5173\u7684\u670D\u52A1
+  contact: qianfeng
+  version: v1.0

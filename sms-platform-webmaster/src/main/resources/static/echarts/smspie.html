@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>成功率统计</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="../public/css/bootstrap.min.css">
+<link rel="stylesheet" href="../public/css/font-awesome.min.css">
+<link rel="stylesheet" href="../public/plugins/bootstrap-table/bootstrap-table.min.css">
+<link rel="stylesheet" href="../public/plugins/ztree/css/metroStyle/metroStyle.css">
+<link rel="stylesheet" href="../public/css/main.css">
+<link rel="stylesheet" href="../public/css/index.css">
+<script src="../public/libs/jquery.min.js"></script>
+<script src="../public/plugins/echarts/echarts.min.js"></script>
+</head>
+<body>
+<div id="dtapp" v-cloak>
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-inline">
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="date" class="form-control" id="start">
+                        <input type="date" class="form-control" id="end">
+                    </div>
+                    <div class="form-group">
+                        <label >公司</label>
+                        <select class="form-control" id="clientID" >
+                            <option value="">请选择</option>
+                            <option :value="item.id" v-for="item in sites">{{item.corpname}}</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" @click="reload" >查询</button>
+                </form>
+            </div>
+        </div>
+        <!--图形的容器  -->
+        <div id="pie" style="width: 800px;height: 600px;"></div>
+    </div>
+</div>
+
+<script src="../public/libs/jquery.min.js"></script>
+<script src="../public/plugins/layer/layer.js"></script>
+<script src="../public/libs/bootstrap.min.js"></script>
+<script src="../public/libs/vue.min.js"></script>
+<script src="../public/libs/myindex.js"></script>
+<script src="../public/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../public/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../public/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="../public/js/common.js"></script>
+<script src="../public/js/client/smspie.js"></script>
+</body>
+</html>

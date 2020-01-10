@@ -1,0 +1,10 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:123456@localhost:8000/eureka/
+#zookeeper注册中心配置
+regCenter:
+  #zookeeper注册中心IP与端口列表
+  serverList: 192.168.157.152:2181
+  #Zookeeper的命名空间
+  namespace: elastic-job-lite-smsplatform

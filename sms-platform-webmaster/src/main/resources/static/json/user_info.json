@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "user": {
+    "userId": 1,
+    "username": "admin",
+    "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "email": "100@qq.com",
+    "mobile": "13666666666",
+    "status": 1,
+    "roleIdList": null,
+    "createUserId": null,
+    "createTime": "2017-06-01 15:33:20"
+  }
+}

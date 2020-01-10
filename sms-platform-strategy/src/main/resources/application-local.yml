@@ -1,0 +1,12 @@
+﻿#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://admin:123456@localhost:8000/eureka/
+
+# rabbitMQ配置信息
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest

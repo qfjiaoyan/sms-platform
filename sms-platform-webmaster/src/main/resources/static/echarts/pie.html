@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成功率统计</title>
+
+    <script src="../public/libs/jquery.min.js"></script>
+    <script src="../public/plugins/echarts/echarts.min.js"></script>
+
+    <script>
+        $(function () {
+            //1,初始化echarts对象
+            var myEcharts = echarts.init(document.getElementById("pie"));
+            //2, 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '标签热度比例',
+                    subtext: '真实有效',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: []
+                },
+                series: [
+                    {
+                        name: '标签热度比例',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: [],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            $.ajax({
+                url: '/sys/echarts/pie',
+                dataType: 'json',
+                success: function (r) {
+                    console.log(r);
+                    //给option赋值
+                    //R.ok().put("legendData",legendData).put("seriesData",seriesData);
+                    option.legend.data = r.legendData;
+                    option.series[0].data = r.seriesData;
+                    // 使用刚指定的配置项和数据显示图表。
+                    myEcharts.setOption(option);
+                }
+            });
+            // 使用刚指定的配置项和数据显示图表。
+            // myEcharts.setOption(option);  //因为ajax是异步的
+        });
+    </script>
+
+</head>
+<body>
+<!--图形的容器-->
+<div id="pie" style="width: 400px;height: 400px;">
+</div>
+</body>
+</html>

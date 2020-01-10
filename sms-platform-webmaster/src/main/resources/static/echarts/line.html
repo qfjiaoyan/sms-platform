@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门员工数量</title>
+
+    <script src="../public/libs/jquery.min.js"></script>
+    <script src="../public/plugins/echarts/echarts.min.js"></script>
+
+    <script>
+        $(function () {
+            //1,初始化echarts对象
+            var myEcharts = echarts.init(document.getElementById("pie"));
+            //2, 指定图表的配置项和数据
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [],
+                    type: 'line'
+                }]
+            };
+            $.ajax({
+                url: '/sys/echarts/line',
+                dataType: 'json',
+                success: function (r) {
+                    //给option赋值
+                    option.xAxis.data = r.xAxis;
+                    option.series[0].data = r.seriesData;
+                    // 使用刚指定的配置项和数据显示图表。
+                    myEcharts.setOption(option);
+                }
+            });
+            // 使用刚指定的配置项和数据显示图表。
+            // myEcharts.setOption(option);  //因为ajax是异步的
+        });
+    </script>
+
+</head>
+<body>
+
+<!--图形的容器-->
+<div id="pie" style="width: 400px;height: 400px;">
+
+</div>
+</body>
+</html>

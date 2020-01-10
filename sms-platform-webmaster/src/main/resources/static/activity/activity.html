@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>活动管理</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../public/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../public/plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="../public/css/index.css">
+</head>
+<body>
+<div id="dtapp" v-cloak>
+
+    <div v-show="showList">
+        <div id="toolbar">
+            <button class="btn btn-success " type="button" @click="add">
+                <i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">新增</span>
+            </button>
+            <button class="btn btn-success " type="button" @click="update">
+                <i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;<span class="bold">修改</span>
+            </button>
+            <button class="btn btn-danger " type="button" @click="del">
+                <i class="fa fa-remove"></i>&nbsp;&nbsp;<span class="bold">删除</span>
+            </button>
+        </div>
+
+        <table id="table"></table>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">标 题</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="activity.title" placeholder="汽车行业发展"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">描 述</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="activity.description" placeholder="资讯来源"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">图片</div>
+                <div class="col-sm-10">
+                    <el-upload
+                            action="http://localhost:8080/ytupload"
+                            accept="image/jpeg,image/gif,image/png"
+                            :on-success="handleSuccess"
+                            name="mypic">
+                        <div slot="tip" class="el-upload__tip">请上传图片格式文件
+                            <el-button size="small" type="primary" style="text-align:right">自动上传</el-button>
+                        </div>
+                    </el-upload>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">活动创建者</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="activity.author"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">开始时间</div>
+                <div class="col-sm-10">
+                    <el-date-picker
+                            v-model="activity.beginTime"
+                            type="datetime"
+                            format="yyyy-MM-dd HH:mm"
+                            value-format="yyyy-MM-dd HH:mm"
+                            :editable="false"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">结束时间</div>
+                <div class="col-sm-10">
+                    <el-date-picker
+                            v-model="activity.endTime"
+                            type="datetime"
+                            format="yyyy-MM-dd HH:mm"
+                            value-format="yyyy-MM-dd HH:mm"
+                            :editable="false"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">活动链接</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="activity.link"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">SEO关键字</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="activity.seoKeywords"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script src="../public/libs/jquery.min.js"></script>
+<script src="../public/plugins/layer/layer.js"></script>
+<script src="../public/libs/bootstrap.min.js"></script>
+<script src="../public/libs/vue.js"></script>
+<script src="../public/libs/myindex.js"></script>
+<script src="../public/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../public/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../public/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="../public/plugins/ueditor/ueditor.config.js"></script>
+<script src="../public/plugins/ueditor/ueditor.all.js"></script>
+<script src="../public/plugins/ueditor/ueditor.parse.min.js"></script>
+<script src="../public/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="../public/js/common.js"></script>
+<script src="../public/js/activity/activity.js"></script>
+</body>
+</html>

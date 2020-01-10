@@ -1,0 +1,16 @@
+﻿server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:8000/eureka/
+
+#rabbitMQ配置信息
+spring:
+  rabbitmq:
+    host: 114.242.146.109
+    port: 9303
+    username: qf
+    password: qf
+    virtual-host: /qf

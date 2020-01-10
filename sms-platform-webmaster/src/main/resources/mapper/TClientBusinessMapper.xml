@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.smsplatform.webmaster.dao.TClientBusinessMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.smsplatform.webmaster.pojo.TClientBusiness">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="corpName" jdbcType="VARCHAR" property="corpname" />
+    <result column="userCode" jdbcType="VARCHAR" property="usercode" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="ipAddress" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="isReturnStatus" jdbcType="TINYINT" property="isreturnstatus" />
+    <result column="receiveStatusUrl" jdbcType="VARCHAR" property="receivestatusurl" />
+    <result column="priority" jdbcType="TINYINT" property="priority" />
+    <result column="userType" jdbcType="TINYINT" property="usertype" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, corpName, userCode, pwd, ipAddress, isReturnStatus, receiveStatusUrl, priority, 
+    userType, state, mobile
+  </sql>
+  <select id="selectByExample" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusinessExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_client_business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_client_business
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_client_business
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusinessExample">
+    delete from t_client_business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusiness">
+    insert into t_client_business (id, corpName, userCode, 
+      pwd, ipAddress, isReturnStatus, 
+      receiveStatusUrl, priority, userType, 
+      state, mobile)
+    values (#{id,jdbcType=BIGINT}, #{corpname,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR}, #{isreturnstatus,jdbcType=TINYINT}, 
+      #{receivestatusurl,jdbcType=VARCHAR}, #{priority,jdbcType=TINYINT}, #{usertype,jdbcType=TINYINT}, 
+      #{state,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusiness">
+    <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+      SELECT  last_insert_id()
+    </selectKey>
+    insert into t_client_business
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="corpname != null">
+        corpName,
+      </if>
+      <if test="usercode != null">
+        userCode,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="ipaddress != null">
+        ipAddress,
+      </if>
+      <if test="isreturnstatus != null">
+        isReturnStatus,
+      </if>
+      <if test="receivestatusurl != null">
+        receiveStatusUrl,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="usertype != null">
+        userType,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="corpname != null">
+        #{corpname,jdbcType=VARCHAR},
+      </if>
+      <if test="usercode != null">
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isreturnstatus != null">
+        #{isreturnstatus,jdbcType=TINYINT},
+      </if>
+      <if test="receivestatusurl != null">
+        #{receivestatusurl,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=TINYINT},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusinessExample" resultType="java.lang.Long">
+    select count(*) from t_client_business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_client_business
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.corpname != null">
+        corpName = #{record.corpname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercode != null">
+        userCode = #{record.usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null">
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipaddress != null">
+        ipAddress = #{record.ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isreturnstatus != null">
+        isReturnStatus = #{record.isreturnstatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.receivestatusurl != null">
+        receiveStatusUrl = #{record.receivestatusurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null">
+        priority = #{record.priority,jdbcType=TINYINT},
+      </if>
+      <if test="record.usertype != null">
+        userType = #{record.usertype,jdbcType=TINYINT},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_client_business
+    set id = #{record.id,jdbcType=BIGINT},
+      corpName = #{record.corpname,jdbcType=VARCHAR},
+      userCode = #{record.usercode,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      ipAddress = #{record.ipaddress,jdbcType=VARCHAR},
+      isReturnStatus = #{record.isreturnstatus,jdbcType=TINYINT},
+      receiveStatusUrl = #{record.receivestatusurl,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=TINYINT},
+      userType = #{record.usertype,jdbcType=TINYINT},
+      state = #{record.state,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusiness">
+    update t_client_business
+    <set>
+      <if test="corpname != null">
+        corpName = #{corpname,jdbcType=VARCHAR},
+      </if>
+      <if test="usercode != null">
+        userCode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        ipAddress = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isreturnstatus != null">
+        isReturnStatus = #{isreturnstatus,jdbcType=TINYINT},
+      </if>
+      <if test="receivestatusurl != null">
+        receiveStatusUrl = #{receivestatusurl,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="usertype != null">
+        userType = #{usertype,jdbcType=TINYINT},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.smsplatform.webmaster.pojo.TClientBusiness">
+    update t_client_business
+    set corpName = #{corpname,jdbcType=VARCHAR},
+      userCode = #{usercode,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      ipAddress = #{ipaddress,jdbcType=VARCHAR},
+      isReturnStatus = #{isreturnstatus,jdbcType=TINYINT},
+      receiveStatusUrl = #{receivestatusurl,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=TINYINT},
+      userType = #{usertype,jdbcType=TINYINT},
+      state = #{state,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

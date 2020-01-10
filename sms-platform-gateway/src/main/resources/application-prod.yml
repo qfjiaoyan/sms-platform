@@ -1,0 +1,8 @@
+# rabbitMQ配置信息
+spring:
+  rabbitmq:
+    host: 114.242.146.109
+    port: 9303
+    username: qf
+    password: qf
+    virtual-host: /qf

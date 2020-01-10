@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: @profileActive@
+  application:
+    name: GATEWAY-SERVICE
+gateway:
+  longcode: 106998
+  sendtopic: sms_send_gateway_2
