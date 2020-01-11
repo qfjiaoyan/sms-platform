@@ -39,7 +39,7 @@ sms-platform由：
 - sms-platform-strategy		
 - sms-platform-webmaster
 
-组成
+## 组成
 
 ### sms-platform-eureka
 Eureka服务发现管理,支持高可用配置。
@@ -75,6 +75,6 @@ Eureka服务发现管理,支持高可用配置。
 
 ## 参与贡献
 
-​      1.千锋Java教研院-大杜
-​      2.千锋Java教研院-老魏
-​      3.千锋Java教研院-老吕
+​      千锋Java教研院-大杜
+​      千锋Java教研院-老魏
+​      千锋Java教研院-老吕
